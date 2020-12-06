@@ -25,7 +25,7 @@ const dimmers_1 = require("./dimmers");
 const shades_1 = require("./shades");
 // That's the only supported API as of now, AFAIK
 exports.API = "/api/v1/";
-class Dingz extends utils.Adapter {
+class DingzTest extends utils.Adapter {
     constructor(options = {}) {
         super(Object.assign(Object.assign({}, options), { name: "dingz" }));
         this.interval = 30;
@@ -239,7 +239,7 @@ class Dingz extends utils.Adapter {
         });
     }
 }
-exports.Dingz = Dingz;
+exports.DingzTest= DingzTest;
 /**
  * ioBroker boilerplate code
  */
@@ -249,5 +249,5 @@ if (module.parent) {
 }
 else {
     // otherwise start the instance directly
-    (() => new Dingz())();
+    (() => new DingzTest())();
 }
