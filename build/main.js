@@ -22,6 +22,7 @@ const udp_1 = require("./udp");
 const pir_1 = require("./pir");
 const actions_1 = require("./actions");
 const dimmers_1 = require("./dimmers");
+const shades_1 = require("./shades");
 // That's the only supported API as of now, AFAIK
 exports.API = "/api/v1/";
 class Dingz extends utils.Adapter {
@@ -31,6 +32,7 @@ class Dingz extends utils.Adapter {
         this.actions = new actions_1.Actions(this);
         this.pir = new pir_1.PIR(this);
         this.dimmers = new dimmers_1.Dimmers(this);
+		this.shades = new shades_1(this);
         this.on("ready", this.onReady.bind(this));
         this.on("stateChange", this.onStateChange.bind(this));
         // this.on("message", this.onMessage.bind(this));
@@ -78,6 +80,8 @@ class Dingz extends utils.Adapter {
                     this.setState("info.deviceInfo.front_sn", di[mac].front_sn);
                     this.setState("info.deviceInfo.puck_sn", di[mac].puck_sn);
                     this.setState("info.deviceInfo.details", JSON.stringify(di[mac]), true);
+					this.setState("info.deviceInfo.dip_config",di[mac].dip_config);
+					this.setState("info.deviceInfo.has_pir",di[mac].has_pir);
                     this.log.info("Dingz Info: " + JSON.stringify(di[mac]));
                     this.setState("info.connection", true, true);
                     // we're connected. So set up State Objects
@@ -103,6 +107,9 @@ class Dingz extends utils.Adapter {
         this.doFetch("dimmer").then((res) => {
             this.dimmers.setDimmerStates(res);
         });
+        this.doFetch("shade").then((res) => {
+            this.shades.setShadeStates(res);
+        });		
     }
     /**
      * Adapter shuts down - clear Timers
@@ -133,6 +140,10 @@ class Dingz extends utils.Adapter {
                     this.log.silly("dimmer changed " + id);
                     this.dimmers.sendDimmerState(subid, state);
                 }
+                if (subid.startsWith("shade")) {
+                    this.log.silly("shade changed " + id);
+					this.shades.sendShadeState(subid, state);
+                }				
             }
             else {
                 // change came from the device. If it was the PIR, track it until no more motion is detected
@@ -175,6 +186,7 @@ class Dingz extends utils.Adapter {
      *      dim2: DimmerState,
      *      dim3: DimmerState
      *    }
+	 *	  shades: {}
      *
      * }
      */
@@ -194,6 +206,7 @@ class Dingz extends utils.Adapter {
             yield this.actions.createActionObjects();
             yield this.pir.createPIRObjects();
             yield this.dimmers.createDimmerObjects();
+			yield this.shades.createShadeObjects();
         });
     }
     /**
