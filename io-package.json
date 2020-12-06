@@ -1,8 +1,20 @@
 {
   "common": {
-    "name": "dingz",
-    "version": "0.6.2",
+    "name": "dingz_test",
+    "version": "0.6.3",
     "news": {
+      "0.6.3": {
+        "en": "added shades",
+        "de": "Rolladen hinzugefügt",
+        "ru": "добавлен детектор движения",
+        "pt": "detector de movimento adicionado",
+        "nl": "bewegingsdetector toegevoegd",
+        "fr": "détecteur de mouvement ajouté",
+        "it": "aggiunto rilevatore di movimento",
+        "es": "detector de movimiento agregado",
+        "pl": "dodano czujnik ruchu",
+        "zh-cn": "增加了运动检测器"
+      },	
       "0.6.2": {
         "en": "added motion detector",
         "de": "Bewegungsmelder hinzugefügt",
@@ -245,7 +257,31 @@
       },
       "native": {}
     },
-    {
+     {
+      "_id": "info.deviceInfo.dip_config",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "DIP switch",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+     {
+      "_id": "info.deviceInfo.has_pir",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "PIR present",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },	
+	{
       "_id": "info.deviceInfo.details",
       "type": "state",
       "common": {
