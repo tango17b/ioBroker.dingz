@@ -1,0 +1,17 @@
+/* Just usual css. Nothing special to see here  */
+* {
+  box-sizing: border-box;
+}
+.m {
+  /* Don't cut off dropdowns! */
+  overflow: initial;
+}
+
+.button {
+  border-radius: 10px;
+  border-style: outset;
+  border-width: 6px;
+  border-color: lightblue;
+  min-width: 200px;
+  min-height: 80px;
+}

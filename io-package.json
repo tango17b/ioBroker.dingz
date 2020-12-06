@@ -1,0 +1,261 @@
+{
+  "common": {
+    "name": "dingz",
+    "version": "0.6.2",
+    "news": {
+      "0.6.2": {
+        "en": "added motion detector",
+        "de": "Bewegungsmelder hinzugefügt",
+        "ru": "добавлен детектор движения",
+        "pt": "detector de movimento adicionado",
+        "nl": "bewegingsdetector toegevoegd",
+        "fr": "détecteur de mouvement ajouté",
+        "it": "aggiunto rilevatore di movimento",
+        "es": "detector de movimiento agregado",
+        "pl": "dodano czujnik ruchu",
+        "zh-cn": "增加了运动检测器"
+      },
+      "0.5.0": {
+        "en": "added dimmer controller",
+        "de": "Dimmerregler hinzugefügt",
+        "ru": "добавлен диммер",
+        "pt": "controlador dimmer adicionado",
+        "nl": "toegevoegde dimmercontroller",
+        "fr": "contrôleur de gradateur ajouté",
+        "it": "aggiunto controller dimmer",
+        "es": "controlador de atenuador agregado",
+        "pl": "dodano sterownik ściemniacza",
+        "zh-cn": "增加了调光器控制器"
+      },
+      "0.4.0": {
+        "en": "added brightness indicator",
+        "de": "Helligkeitsanzeige hinzugefügt",
+        "ru": "добавлен индикатор яркости",
+        "pt": "indicador de brilho adicionado",
+        "nl": "toegevoegde helderheidsindicator",
+        "fr": "indicateur de luminosité ajouté",
+        "it": "aggiunto indicatore di luminosità",
+        "es": "indicador de brillo agregado",
+        "pl": "dodano wskaźnik jasności",
+        "zh-cn": "增加了亮度指示器"
+      },
+      "0.3.0": {
+        "en": "added config for polling interval",
+        "de": "Konfiguration für Abfrageintervall hinzugefügt",
+        "ru": "добавлен конфиг для интервала опроса",
+        "pt": "configuração adicionada para o intervalo de pesquisa",
+        "nl": "configuratie toegevoegd voor polling-interval",
+        "fr": "config ajoutée pour l'intervalle d'interrogation",
+        "it": "aggiunta la configurazione per l'intervallo di polling",
+        "es": "configuración agregada para el intervalo de sondeo",
+        "pl": "dodano konfigurację interwału odpytywania",
+        "zh-cn": "为轮询间隔添加了配置"
+      },
+      "0.2.1": {
+        "en": "added travis ci",
+        "de": "Travis ci hinzugefügt",
+        "ru": "добавил Трэвис CI",
+        "pt": "travis ci adicionado",
+        "nl": "voegde travis ci toe",
+        "fr": "ajouté travis ci",
+        "it": "aggiunto travis ci",
+        "es": "travis añadido ci",
+        "pl": "dodano travis ci",
+        "zh-cn": "添加了travis ci"
+      },
+      "0.2.0": {
+        "en": "Extend states with press_release",
+        "de": "States um press_release erweitert",
+        "ru": "Расширьте штаты с помощью press_release",
+        "pt": "Estender estados com press_release",
+        "nl": "Verleng staten met press_release",
+        "fr": "Étendre les états avec press_release",
+        "it": "Estendi gli stati con press_release",
+        "es": "Extienda estados con press_release",
+        "pl": "Rozszerz stany za pomocą press_release",
+        "zh-cn": "使用press_release扩展状态"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版"
+      }
+    },
+    "title": "Dingz",
+    "titleLang": {
+      "en": "Dingz",
+      "de": "Dingz",
+      "ru": "Dingz",
+      "pt": "Dingz",
+      "nl": "Dingz",
+      "fr": "Dingz",
+      "it": "Dingz",
+      "es": "Dingz",
+      "pl": "Dingz",
+      "zh-cn": "丁茨"
+    },
+    "desc": {
+      "en": "Control of Dingz (http://www.dingz.ch) switches",
+      "de": "Steuerung der Dingz-Schalter (http://www.dingz.ch)",
+      "ru": "Управление переключателями Dingz (http://www.dingz.ch)",
+      "pt": "Controle de interruptores Dingz (http://www.dingz.ch)",
+      "nl": "Controle van Dingz (http://www.dingz.ch) schakelaars",
+      "fr": "Contrôle des commutateurs Dingz (http://www.dingz.ch)",
+      "it": "Controllo degli interruttori Dingz (http://www.dingz.ch)",
+      "es": "Control de interruptores Dingz (http://www.dingz.ch)",
+      "pl": "Sterowanie przełącznikami Dingz (http://www.dingz.ch)",
+      "zh-cn": "控制Dingz（http://www.dingz.ch）开关"
+    },
+    "authors": [
+      {
+        "name": "rgwch",
+        "email": "rgwch <rgw@rgw.ch>"
+      }
+    ],
+    "keywords": [
+      "ioBroker",
+      "Dingz",
+      "template",
+      "Smart Home",
+      "home automation"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "build/main.js",
+    "icon": "dingz.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/rgwch/ioBroker.dingz/master/admin/dingz.png",
+    "readme": "https://github.com/rgwch/ioBroker.dingz/blob/master/README.md",
+    "loglevel": "info",
+    "restartAdapters": [
+      "vis"
+    ],
+    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+    "mode": "daemon",
+    "type": "lighting",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "materialize": true,
+    "materializeTab": true,
+    "adminTab": {
+      "singleton": true,
+      "name": {
+        "en": "Dingz",
+        "de": "Dingz",
+        "ru": "Dingz",
+        "pt": "Dingz",
+        "nl": "Dingz",
+        "fr": "Dingz",
+        "it": "Dingz",
+        "es": "Dingz",
+        "pl": "Dingz",
+        "zh-cn": "丁茨"
+      },
+      "link": "",
+      "fa-icon": "info"
+    },
+    "supportCustoms": true,
+    "dependencies": [
+      {
+        "js-controller": ">=1.4.2"
+      },
+      "vis"
+    ]
+  },
+  "native": {
+    "interval": "300",
+    "trackbtn1": false,
+    "trackbtn2": false,
+    "trackbtn3": false,
+    "trackbtn4": false,
+    "trackpir": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info:deviceInfo",
+      "type": "channel",
+      "common": {
+        "name": "Hardware Informationen"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.deviceInfo.mac",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "mac",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.deviceInfo.front_sn",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Serial# front",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.deviceInfo.puck_sn",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Serial# puck",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.deviceInfo.details",
+      "type": "state",
+      "common": {
+        "role": "json",
+        "type": "string",
+        "name": "Detailed informations",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
+}
