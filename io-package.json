@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "dingzTest",
-    "version": "0.6.3",
+    "version": "0.3.2",
     "news": {
-      "0.6.3": {
+      "0.3.2": {
         "en": "added shades",
         "de": "Rolladen hinzugefügt",
         "ru": "добавлен детектор движения",
@@ -100,9 +100,9 @@
         "zh-cn": "首次出版"
       }
     },
-    "title": "Dingz",
+    "title": "DingzTest",
     "titleLang": {
-      "en": "Dingz",
+      "en": "DingzTest",
       "de": "Dingz",
       "ru": "Dingz",
       "pt": "Dingz",
