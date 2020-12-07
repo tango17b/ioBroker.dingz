@@ -27,7 +27,7 @@ const shades_1 = require("./shades");
 exports.API = "/api/v1/";
 class DingzTest extends utils.Adapter {
     constructor(options = {}) {
-        super(Object.assign(Object.assign({}, options), { name: "dingz" }));
+        super(Object.assign(Object.assign({}, options), { name: "dingztest" }));
         this.interval = 30;
         this.actions = new actions_1.Actions(this);
         this.pir = new pir_1.PIR(this);
@@ -245,7 +245,7 @@ exports.DingzTest= DingzTest;
  */
 if (module.parent) {
     // Export the constructor in compact mode
-    module.exports = (options) => new Dingz(options);
+    module.exports = (options) => new DingzTest(options);
 }
 else {
     // otherwise start the instance directly
