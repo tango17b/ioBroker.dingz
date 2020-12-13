@@ -1,12 +1,12 @@
 {
-  "name": "iobroker.dingzTest",
-  "version": "0.6.3",
+  "name": "iobroker.dingz",
+  "version": "0.6.2",
   "description": "Control of Dingz (http://www.dingz.ch) switches",
   "author": {
     "name": "rgwch",
     "email": "rgw@rgw.ch"
   },
-  "homepage": "https://github.com/tango17b/ioBroker.dingzTest",
+  "homepage": "https://github.com/rgwch/ioBroker.dingz",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/tango17b/ioBroker.dingzTest"
+    "url": "https://github.com/rgwch/ioBroker.dingz"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
@@ -27,11 +27,11 @@
     "@iobroker/testing": "^2.2.0",
     "@types/chai": "^4.2.11",
     "@types/chai-as-promised": "^7.1.2",
-    "@types/lodash": "^4.14.150",
-    "@types/node-fetch": "^2.5.7",
     "@types/gulp": "^4.0.6",
+    "@types/lodash": "^4.14.150",
     "@types/mocha": "^7.0.2",
     "@types/node": "^12.12.37",
+    "@types/node-fetch": "^2.5.7",
     "@types/proxyquire": "^1.3.28",
     "@types/sinon": "^9.0.0",
     "@types/sinon-chai": "^3.2.4",
@@ -50,7 +50,7 @@
     "sinon-chai": "^3.5.0",
     "source-map-support": "^0.5.19",
     "ts-node": "^8.10.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7"
   },
   "main": "build/main.js",
   "scripts": {
@@ -68,7 +68,7 @@
     "lint": "eslint --ext .ts src"
   },
   "bugs": {
-    "url": "https://github.com/tango17b/ioBroker.dingzTest/issues"
+    "url": "https://github.com/rgwch/ioBroker.dingz/issues"
   },
   "readmeFilename": "README.md"
 }

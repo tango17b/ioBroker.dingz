@@ -14,14 +14,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Shades = void 0;
 const main_1 = require("./main");
 const node_fetch_1 = require("node-fetch");
 class Shades {
     constructor(d) {
         this.d = d;
     }
-    createShadeObjects() {
+    createShadeObjects(dip_config) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (dip_config == 3) {
+                return;
+            }
             yield this.d.setObjectAsync("shades", {
                 type: "channel",
                 common: {
@@ -30,9 +34,12 @@ class Shades {
                 },
                 native: {}
             });
-            yield this.createShade(0);
-            yield this.createShade(1);
-
+            if ((dip_config & 1) == 0) {
+                yield this.createShade(0);
+            }
+            if ((dip_config & 2) == 0) {
+                yield this.createShade(1);
+            }
         });
     }
     createShade(shade) {
@@ -44,10 +51,8 @@ class Shades {
                 },
                 native: {}
             });
-            yield this.createShadeState(shade, "target.blind", "number");
-			yield this.createShadeState(shade, "target.lamella", "number");
-            yield this.createShadeState(shade, "current.blind", "number");
-            yield this.createShadeState(shade, "current.lamella", "number");
+            yield this.createShadeState(shade, "blind", "number");
+            yield this.createShadeState(shade, "lamella", "number");
             yield this.createShadeState(shade, "disabled", "boolean");
         });
     }
@@ -66,19 +71,21 @@ class Shades {
             });
         });
     }
-    setShadeStates(n) {
+    setShadeStates(n, dip_config) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.setShadeState(0, n["0"]);
-            yield this.setShadeState(1, n["1"]);
+            if ((dip_config & 1) == 0) {
+                yield this.setShadeState(0, n["0"]);
+            }
+            if ((dip_config & 2) == 0) {
+                yield this.setShadeState(1, n["1"]);
+            }
         });
     }
     setShadeState(n, s) {
         return __awaiter(this, void 0, void 0, function* () {
             this.d.log.silly("Setting shade states for " + n + ", " + JSON.stringify(s));
-            yield this.d.setStateAsync(`shades.${n}.target.blind`, s.target.blind, true);
-            yield this.d.setStateAsync(`shades.${n}.target.lamella`, s.target.lamella, true);
-            yield this.d.setStateAsync(`shades.${n}.current.blind`, s.current.blind, true);
-            yield this.d.setStateAsync(`shades.${n}.current.lamella`, s.current.lamella, true);
+            yield this.d.setStateAsync(`shades.${n}.blind`, s.current.blind, true);
+            yield this.d.setStateAsync(`shades.${n}.lamella`, s.current.lamella, true);
             yield this.d.setStateAsync(`shades.${n}.disabled`, s.disabled, true);
         });
     }
@@ -91,29 +98,22 @@ class Shades {
             else {
                 const num = parts[1];
                 const action = parts[2];
-                if (action == "on") {
-                    yield this.doPost(`${num}/${state.val ? "on" : "off"}`);
-                }
-                else {
-                    if (action == "value") {
-                        const ramp = yield this.d.getStateAsync(`dimmers.${num}.ramp`);
-                        this.doPost(num, state.val, ramp.val);
-                    }
+                if (action == "blind" || action == "lamella") {
+                    const blind = yield this.d.getStateAsync(`shades.${num}.blind`);
+                    const lamella = yield this.d.getStateAsync(`shades.${num}.lamella`);
+                    this.doPost(num, blind.val, lamella.val);
                 }
             }
         });
     }
     doPost(shade, blind = 0, lamella = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const url = this.d.config.url + main_1.API + "shade/" + shade + "&blind="+ blind +"&lamella=" + lamella);
+            const url = this.d.config.url + main_1.API + "shade/" + shade;
             this.d.log.info(`Posting ${url}; {blind: ${blind}, lamella: ${lamella}}`);
             try {
-                let encoded;
-                if (value != undefined) {
-                    encoded = new URLSearchParams();
-                    encoded.append("blind", blind.toString());
-                    encoded.append("lamella", lamella.toString());
-                }
+                let encoded = new URLSearchParams();
+                encoded.append("blind", blind.toString());
+                encoded.append("lamella", lamella.toString());
                 const response = yield node_fetch_1.default(url, {
                     method: "post",
                     headers: {

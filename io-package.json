@@ -1,20 +1,8 @@
 {
   "common": {
-    "name": "dingzTest",
-    "version": "0.3.2",
+    "name": "dingz",
+    "version": "0.6.2.1",
     "news": {
-      "0.3.2": {
-        "en": "added shades",
-        "de": "Rolladen hinzugefügt",
-        "ru": "добавлен детектор движения",
-        "pt": "detector de movimento adicionado",
-        "nl": "bewegingsdetector toegevoegd",
-        "fr": "détecteur de mouvement ajouté",
-        "it": "aggiunto rilevatore di movimento",
-        "es": "detector de movimiento agregado",
-        "pl": "dodano czujnik ruchu",
-        "zh-cn": "增加了运动检测器"
-      },	
       "0.6.2": {
         "en": "added motion detector",
         "de": "Bewegungsmelder hinzugefügt",
@@ -100,9 +88,9 @@
         "zh-cn": "首次出版"
       }
     },
-    "title": "DingzTest",
+    "title": "Dingz",
     "titleLang": {
-      "en": "DingzTest",
+      "en": "Dingz",
       "de": "Dingz",
       "ru": "Dingz",
       "pt": "Dingz",
@@ -127,8 +115,8 @@
     },
     "authors": [
       {
-        "name": "tango17b",
-        "email": "newsbox <newsbox@schaad.org>"
+        "name": "rgwch",
+        "email": "rgwch <rgw@rgw.ch>"
       }
     ],
     "keywords": [
@@ -143,8 +131,8 @@
     "main": "build/main.js",
     "icon": "dingz.png",
     "enabled": true,
-    "extIcon": "https://github.com/tango17b/ioBroker.dingzTest/blob/main/admin/dingz.png",
-    "readme": "https://github.com/tango17b/ioBroker.dingzTest/blob/main/README.md",
+    "extIcon": "https://raw.githubusercontent.com/rgwch/ioBroker.dingz/master/admin/dingz.png",
+    "readme": "https://github.com/rgwch/ioBroker.dingz/blob/master/README.md",
     "loglevel": "info",
     "restartAdapters": [
       "vis"
@@ -179,7 +167,9 @@
       {
         "js-controller": ">=1.4.2"
       },
-      "vis"
+      {
+        "vis": ">=1.2.0"
+      }
     ]
   },
   "native": {
@@ -214,7 +204,7 @@
       "native": {}
     },
     {
-      "_id": "info:deviceInfo",
+      "_id": "info.deviceInfo",
       "type": "channel",
       "common": {
         "name": "Hardware Informationen"
@@ -257,37 +247,25 @@
       },
       "native": {}
     },
-     {
-      "_id": "info.deviceInfo.dip_config",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "DIP switch",
-        "type": "string",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-     {
-      "_id": "info.deviceInfo.has_pir",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "PIR present",
-        "type": "boolean",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },	
-	{
+    {
       "_id": "info.deviceInfo.details",
       "type": "state",
       "common": {
         "role": "json",
         "type": "string",
         "name": "Detailed informations",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.deviceInfo.dip_config",
+      "type": "state",
+      "common": {
+        "role": "json",
+        "type": "number",
+        "name": "DIP Switches",
         "read": true,
         "write": false
       },

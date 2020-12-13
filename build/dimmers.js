@@ -14,14 +14,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Dimmers = void 0;
 const main_1 = require("./main");
 const node_fetch_1 = require("node-fetch");
 class Dimmers {
     constructor(d) {
         this.d = d;
     }
-    createDimmerObjects() {
+    createDimmerObjects(dip_config) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (dip_config == 0) {
+                return;
+            }
             yield this.d.setObjectAsync("dimmers", {
                 type: "channel",
                 common: {
@@ -30,10 +34,15 @@ class Dimmers {
                 },
                 native: {}
             });
-            yield this.createDimmer(0);
-            yield this.createDimmer(1);
-            yield this.createDimmer(2);
-            yield this.createDimmer(3);
+            this.d.log.info(`Dimmer DIP config: ${dip_config}`);
+            if ((dip_config & 1) != 0) {
+                yield this.createDimmer(0);
+                yield this.createDimmer(1);
+            }
+            if ((dip_config & 2) != 0) {
+                yield this.createDimmer(2);
+                yield this.createDimmer(3);
+            }
         });
     }
     createDimmer(dimmer) {
@@ -66,12 +75,16 @@ class Dimmers {
             });
         });
     }
-    setDimmerStates(n) {
+    setDimmerStates(n, dip_config) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.setDimmerState(0, n["0"]);
-            yield this.setDimmerState(1, n["1"]);
-            yield this.setDimmerState(2, n["2"]);
-            yield this.setDimmerState(3, n["3"]);
+            if ((dip_config & 1) != 0) {
+                yield this.setDimmerState(0, n["0"]);
+                yield this.setDimmerState(1, n["1"]);
+            }
+            if ((dip_config & 2) != 0) {
+                yield this.setDimmerState(2, n["2"]);
+                yield this.setDimmerState(3, n["3"]);
+            }
         });
     }
     setDimmerState(n, s) {
