@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "dingz",
-    "version": "0.6.2.1",
+    "version": "0.6.4",
     "news": {
       "0.6.2": {
         "en": "added motion detector",
