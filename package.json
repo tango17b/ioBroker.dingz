@@ -6,7 +6,7 @@
     "name": "rgwch",
     "email": "rgw@rgw.ch"
   },
-  "homepage": "https://github.com/rgwch/ioBroker.dingz",
+  "homepage": "https://github.com/tango17b/ioBroker.dingz",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/rgwch/ioBroker.dingz"
+    "url": "https://github.com/tango17b/ioBroker.dingz"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0",
@@ -68,7 +68,7 @@
     "lint": "eslint --ext .ts src"
   },
   "bugs": {
-    "url": "https://github.com/rgwch/ioBroker.dingz/issues"
+    "url": "https://github.com/tango17b/ioBroker.dingz/issues"
   },
   "readmeFilename": "README.md"
 }
