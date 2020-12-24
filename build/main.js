@@ -31,6 +31,7 @@ class Dingz extends utils.Adapter {
         super(Object.assign(Object.assign({}, options), { name: "dingz" }));
         this.interval = 30;
         this.dip_config = 0;
+		this.has_pir = 0;
         this.actions = new actions_1.Actions(this);
         this.pir = new pir_1.PIR(this);
         this.dimmers = new dimmers_1.Dimmers(this);
@@ -83,6 +84,7 @@ class Dingz extends utils.Adapter {
                     this.setState("info.deviceInfo.puck_sn", di[mac].puck_sn);
                     this.setState("info.deviceInfo.details", JSON.stringify(di[mac]), true);
                     this.setState("info.deviceInfo.dip_config", di[mac].dip_config);
+					this.setState("info.deviceInfo.has_pir", di[mac].has_pir);
                     this.log.info("Dingz Info: " + JSON.stringify(di[mac]));
                     this.setState("info.connection", true, true);
                     // we're connected. So set up State Objects
@@ -146,6 +148,11 @@ class Dingz extends utils.Adapter {
                 if (subid.startsWith("shade")) {
                     this.log.silly("shade changed " + id);
                     this.shades.sendShadeState(subid, state);
+                }
+				if (subid.startsWith("actions")) {
+                    this.log.silly("action changed " + id);
+					this.actions.pushButton(subid,state);
+                    //this.dimmers.sendDimmerState(subid, state);
                 }
             }
             else {

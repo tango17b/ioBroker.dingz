@@ -97,5 +97,74 @@ class Actions {
             this.d.log.error("Exception whilePOSTing: " + err);
         });
     }
+	pushButton(id, state) {
+        return __awaiter(this, void 0, void 0, function* () {
+			// extract button action
+			const parts = id.split(".");
+			var btnid = 0;
+			var btnaction = 'press';
+			switch (parts[1]) {
+				case 'btn1':
+					btnid = 1;
+				break;
+				case 'btn2':
+					btnid = 2;
+				break;
+				case 'btn3':
+					btnid = 3;
+				break;				
+				case 'btn4':
+					btnid = 4;
+				break;	
+			}
+			switch (parts[2]) {
+				case 'single':
+					btnaction = 'single-press';
+				break;
+				case 'dobule':
+					btnaction = 'double-press';
+				break;
+				case 'long':
+					btnaction = 'long-press';
+				break;				
+				case 'generic':
+					btnaction = 'press';
+				break;	
+			}			
+			
+			
+			
+			//build url to post
+            const url = this.d.config.url + main_1.API + "button/" + btnid + "/" + btnaction;
+            this.d.log.info(`Posting ${url}; {button: ${btnid}, action: ${btnaction}}`);
+            try {
+                let encoded;
+               // if (btnid != undefined) {
+               //     encoded = new URLSearchParams();
+               //     encoded.append("btinid", value.toString());
+               //     encoded.append("ramp", ramp.toString());
+               // }
+                const response = yield node_fetch_1.default(url, {
+                    method: "post",
+                //    headers: {
+                //        "Content-type": "x-www-form-urlencoded"
+                 //   },
+                    //body: encoded || "",
+                    redirect: "follow"
+                });
+                if (response.status == 200) {
+                    this.d.log.info("ok");
+                }
+                else {
+                    this.d.log.error("Error while posting " + url + ": " + response.status + ", " + response.statusText);
+                    // this.d.setState("info.connection", false, true);
+                }
+            }
+            catch (err) {
+                this.d.log.error("Fatal error during fetch " + err);
+                this.d.setState("info.connection", false, true);
+            }
+        });
+    }
 }
 exports.Actions = Actions;
