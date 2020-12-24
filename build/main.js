@@ -150,9 +150,10 @@ class Dingz extends utils.Adapter {
             else {
                 // change came from the device. 
 				//update all values
-				
-				this.fetchValues();
-				this.log.silly('fetch values due to device action');
+				if (subid.startsWith('actions')){
+					this.fetchValues();
+					this.log.silly('fetch values due to button action');
+				}
 				
 				//If it was the PIR, track it until no more motion is detected
                 if (id.endsWith("pir.generic")) {
