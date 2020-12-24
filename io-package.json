@@ -270,6 +270,18 @@
         "write": false
       },
       "native": {}
+    },
+	{
+      "_id": "info.deviceInfo.has_pir",
+      "type": "state",
+      "common": {
+        "role": "json",
+        "type": "boolean",
+        "name": "PIR present",
+        "read": true,
+        "write": false
+      },
+      "native": {}
     }
   ]
 }
