@@ -51,22 +51,22 @@ class Shades {
                 },
                 native: {}
             });
-            yield this.createShadeState(shade, "blind", "number");
-            yield this.createShadeState(shade, "lamella", "number");
-            yield this.createShadeState(shade, "disabled", "boolean");
-			yield this.createShadeState(shade, "up", "switch");
-			yield this.createShadeState(shade, "down", "switch");
-			yield this.createShadeState(shade, "stop", "switch");
+            yield this.createShadeState(shade, "blind", "number", "indicator");
+            yield this.createShadeState(shade, "lamella", "number", "indicator");
+            yield this.createShadeState(shade, "disabled", "boolean", "indicator");
+			yield this.createShadeState(shade, "up", "boolean", "switch");
+			yield this.createShadeState(shade, "down", "boolean", "switch");
+			yield this.createShadeState(shade, "stop", "boolean", "switch");
         });
     }
-    createShadeState(shade, substate, type) {
+    createShadeState(shade, substate, type, role) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.d.setObjectAsync(`shades.${shade}.${substate}`, {
                 type: "state",
                 common: {
                     name: substate,
                     type: type,
-                    role: "indicator",
+                    role: role,
                     read: true,
                     write: true
                 },
@@ -90,6 +90,10 @@ class Shades {
             yield this.d.setStateAsync(`shades.${n}.blind`, s.current.blind, true);
             yield this.d.setStateAsync(`shades.${n}.lamella`, s.current.lamella, true);
             yield this.d.setStateAsync(`shades.${n}.disabled`, s.disabled, true);
+			// set dummy states for up/down/stop
+            yield this.d.setStateAsync(`shades.${n}.up`, false, true);
+            yield this.d.setStateAsync(`shades.${n}.down`, false, true);
+            yield this.d.setStateAsync(`shades.${n}.stop`, false, true);			
         });
     }
     sendShadeState(id, state) {
@@ -108,8 +112,9 @@ class Shades {
                 }
 				else {
 					if (action == 'up' || action == 'down' || action == 'stop' ){
-						const url = this.d.config.url + main_1.API + "shade/" + shade+ "/"+ action;
+						const url = this.d.config.url + main_1.API + "shade/" + num + "/"+ action;
 						this.d.log.info(`Posting ${url}`);
+
 						try {
 							let encoded;
 							const response = yield node_fetch_1.default(url, {
