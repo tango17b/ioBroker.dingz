@@ -54,6 +54,9 @@ class Shades {
             yield this.createShadeState(shade, "blind", "number");
             yield this.createShadeState(shade, "lamella", "number");
             yield this.createShadeState(shade, "disabled", "boolean");
+			yield this.createShadeState(shade, "up", "switch");
+			yield this.createShadeState(shade, "down", "switch");
+			yield this.createShadeState(shade, "stop", "switch");
         });
     }
     createShadeState(shade, substate, type) {
@@ -103,6 +106,32 @@ class Shades {
                     const lamella = yield this.d.getStateAsync(`shades.${num}.lamella`);
                     this.doPost(num, blind.val, lamella.val);
                 }
+				else {
+					if (action == 'up' || action == 'down' || action == 'stop' ){
+						const url = this.d.config.url + main_1.API + "shade/" + shade+ "/"+ action;
+						this.d.log.info(`Posting ${url}`);
+						try {
+							let encoded;
+							const response = yield node_fetch_1.default(url, {
+								method: "post",
+								redirect: "follow"
+							});
+							if (response.status == 200) {
+								this.d.log.info("ok");
+							}
+							else {
+								this.d.log.error("Error while posting " + url + ": " + response.status + ", " + response.statusText);
+								this.d.setState("info.connection", false, true);
+							}
+						}
+						catch (err) {
+							this.d.log.error("Fatal error during fetch " + err);
+							this.d.setState("info.connection", false, true);
+						}					
+						
+					}
+					
+				}
             }
         });
     }

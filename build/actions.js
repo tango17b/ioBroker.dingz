@@ -157,7 +157,7 @@ class Actions {
                 }
                 else {
                     this.d.log.error("Error while posting " + url + ": " + response.status + ", " + response.statusText);
-                    // this.d.setState("info.connection", false, true);
+                    this.d.setState("info.connection", false, true);
                 }
             }
             catch (err) {

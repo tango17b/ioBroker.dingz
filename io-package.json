@@ -1,8 +1,16 @@
 {
   "common": {
     "name": "dingz",
-    "version": "0.6.4",
+    "version": "0.6.5",
     "news": {
+		"0.6.5": {
+        "en": "shades actions added",
+        "de": "Rolladen Aktionen hinzugefügt"
+      },
+	   "0.6.4": {
+        "en": "shades added",
+        "de": "Rolladen hinzugefügt"
+      },
       "0.6.2": {
         "en": "added motion detector",
         "de": "Bewegungsmelder hinzugefügt",
@@ -131,13 +139,13 @@
     "main": "build/main.js",
     "icon": "dingz.png",
     "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/rgwch/ioBroker.dingz/master/admin/dingz.png",
-    "readme": "https://github.com/rgwch/ioBroker.dingz/blob/master/README.md",
+    "extIcon": "https://raw.githubusercontent.com/tango17b/ioBroker.dingz/master/admin/dingz.png",
+    "readme": "https://github.com/tango17b/ioBroker.dingz/blob/master/README.md",
     "loglevel": "info",
     "restartAdapters": [
       "vis"
     ],
-    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+    "localLink": "",
     "mode": "daemon",
     "type": "lighting",
     "compact": true,
