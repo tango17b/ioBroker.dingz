@@ -153,21 +153,6 @@
     "dataSource": "poll",
     "materialize": true,
     "materializeTab": true,
-    "adminTab": {
-      "singleton": true,
-      "name": {
-        "en": "Dingz",
-        "de": "Dingz",
-        "ru": "Dingz",
-        "pt": "Dingz",
-        "nl": "Dingz",
-        "fr": "Dingz",
-        "it": "Dingz",
-        "es": "Dingz",
-        "pl": "Dingz",
-        "zh-cn": "丁茨"
-      }
-    },
     "supportCustoms": true,
     "dependencies": [
       {
