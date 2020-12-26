@@ -166,9 +166,7 @@
         "es": "Dingz",
         "pl": "Dingz",
         "zh-cn": "丁茨"
-      },
-      "link": "",
-      "fa-icon": "info"
+      }
     },
     "supportCustoms": true,
     "dependencies": [

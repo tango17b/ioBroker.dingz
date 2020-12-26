@@ -123,6 +123,9 @@ class Shades {
 							});
 							if (response.status == 200) {
 								this.d.log.info("ok");
+								yield this.d.setStateAsync(`shades.${num}.up`, false, true);
+								yield this.d.setStateAsync(`shades.${num}.down`, false, true);
+								yield this.d.setStateAsync(`shades.${num}.stop`, false, true);								
 							}
 							else {
 								this.d.log.error("Error while posting " + url + ": " + response.status + ", " + response.statusText);
