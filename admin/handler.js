@@ -17,8 +17,9 @@ function load(settings, onChange) {
           ', time stamp: '   + state.ts  + 
           ', last changed: ' + state.lc
 		); */
-		$('#btnup').text(state.val.has_pir);
-		$('#btndown').text(state.val.dip_config);
+		console.log(JSON.stringify(state));
+		$('#btnup').text(state.has_pir);
+		$('#btndown').text(state.dip_config);
   });
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
   // to each input element identified by class "value"
