@@ -7,8 +7,8 @@ function load(settings, onChange) {
     const href = `${window.location.protocol || "http:"}//${window.location.hostname || "127.0.0.1"}:8087`
     settings.hostip = href
   }
-  //$('#btnup').text(JSON.stringify(settings));
-  socket.emit('getState', adapter + '.' + instance + '.info.deviceInfo.dip_config', function (err, state) {
+  //get adapter states
+  socket.emit('getState', adapter + '.' + instance + '.info.deviceInfo.details', function (err, state) {
   /*adapter.getState('info.deviceInfo.dip_config', function (err, state){
 	      adapter.log.info(
           'State ' + adapter.namespace + '.info.deviceInfo.dip_config -' + 
@@ -17,7 +17,8 @@ function load(settings, onChange) {
           ', time stamp: '   + state.ts  + 
           ', last changed: ' + state.lc
 		); */
-		$('#btndown').text(state.val);
+		$('#btnup').text(state.val.has_pir);
+		$('#btndown').text(state.val.dip_config);
   });
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
   // to each input element identified by class "value"
