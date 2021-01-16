@@ -12,8 +12,9 @@ function load(settings, onChange) {
 
 		console.log(JSON.stringify(state));
 		console.log(JSON.stringify(state.val));
-		$('#btnup').text(state.val[0].has_pir);
-		$('#btndown').text(state.val[0].dip_config);
+		let details = JSON.parse(state.val);
+		$('#btnup').text(details.has_pir);
+		$('#btndown').text(details.dip_config);
 		
   });
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
