@@ -8,6 +8,15 @@ function load(settings, onChange) {
     settings.hostip = href
   }
   $('#btnup').text(JSON.stringify(settings));
+  adapter.getState('info.deviceInfo.dip_config' function (err, state)){
+	      adapter.log.info(
+          'State ' + adapter.namespace + '.myState -' + 
+          '  Value: '        + state.val + 
+          ', ack: '          + state.ack + 
+          ', time stamp: '   + state.ts  + 
+          ', last changed: ' + state.lc
+    ); 
+  }
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
   // to each input element identified by class "value"
   $('.value').each(function () {
