@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "dingz",
-    "version": "0.6.5.4",
+    "version": "0.6.6",
     "news": {
-		"0.6.5.4": {
+		"0.6.6": {
         "en": "code cleanup",
         "de": "code cleanup"
       },
