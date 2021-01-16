@@ -7,8 +7,9 @@ function load(settings, onChange) {
     const href = `${window.location.protocol || "http:"}//${window.location.hostname || "127.0.0.1"}:8087`
     settings.hostip = href
   }
-  $('#btnup').text(JSON.stringify(settings));
-  adapter.getState('info.deviceInfo.dip_config', function (err, state){
+  //$('#btnup').text(JSON.stringify(settings));
+  socket.emit('getState', adapter + '.' + instance + '.info.deviceInfo.dip_config', function (err, state) {
+  //adapter.getState('info.deviceInfo.dip_config', function (err, state){
 	      adapter.log.info(
           'State ' + adapter.namespace + '.info.deviceInfo.dip_config -' + 
           '  Value: '        + state.val + 
