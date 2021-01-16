@@ -101,6 +101,7 @@ class Dingz extends utils.Adapter {
         });
     }
     fetchValues() {
+		
         this.log.silly("fetching values");
         this.doFetch("temp").then(temp => {
             this.setStateAsync("temperature", temp.temperature, true);
@@ -114,6 +115,10 @@ class Dingz extends utils.Adapter {
         this.doFetch("shade").then((res) => {
             this.shades.setShadeStates(res, this.dip_config);
         });
+		// fetch via state api
+		this.doFetch("state").then((res) => {
+			this.log.silly(JSON.stringify(res));
+		});
     }
     /**
      * Adapter shuts down - clear Timers
@@ -223,6 +228,7 @@ class Dingz extends utils.Adapter {
                 },
                 native: {}
             });
+			//pir check einbauen
             yield this.actions.createActionObjects();
             yield this.pir.createPIRObjects();
             yield this.dimmers.createDimmerObjects(dip_config);

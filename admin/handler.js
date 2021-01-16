@@ -7,6 +7,7 @@ function load(settings, onChange) {
     const href = `${window.location.protocol || "http:"}//${window.location.hostname || "127.0.0.1"}:8087`
     settings.hostip = href
   }
+  $('#btnup').text(JSON.stringify(settings));
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
   // to each input element identified by class "value"
   $('.value').each(function () {

@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "dingz",
-    "version": "0.6.5",
+    "version": "0.6.5.4",
     "news": {
+		"0.6.5.4": {
+        "en": "code cleanup",
+        "de": "code cleanup"
+      },
 		"0.6.5": {
         "en": "shades actions added",
         "de": "Rolladen Aktionen hinzugefügt"

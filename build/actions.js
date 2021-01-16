@@ -35,6 +35,7 @@ class Actions {
             this.d.config.trackbtn2 && (yield this.createAction("btn2"));
             this.d.config.trackbtn3 && (yield this.createAction("btn3"));
             this.d.config.trackbtn4 && (yield this.createAction("btn4"));
+			// Pir check einbauen
             this.d.config.trackpir && (yield this.createAction("pir"));
         });
     }

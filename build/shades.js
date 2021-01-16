@@ -143,6 +143,8 @@ class Shades {
             }
         });
     }
+	//funktion für up/down/stop
+	
     doPost(shade, blind = 0, lamella = 0) {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.d.config.url + main_1.API + "shade/" + shade;
