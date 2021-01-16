@@ -9,17 +9,12 @@ function load(settings, onChange) {
   }
   //get adapter states
   socket.emit('getState', adapter + '.' + instance + '.info.deviceInfo.details', function (err, state) {
-  /*adapter.getState('info.deviceInfo.dip_config', function (err, state){
-	      adapter.log.info(
-          'State ' + adapter.namespace + '.info.deviceInfo.dip_config -' + 
-          '  Value: '        + state.val + 
-          ', ack: '          + state.ack + 
-          ', time stamp: '   + state.ts  + 
-          ', last changed: ' + state.lc
-		); */
+
 		console.log(JSON.stringify(state));
-		$('#btnup').text(state.has_pir);
-		$('#btndown').text(state.dip_config);
+		console.log(JSON.stringify(state.val));
+		$('#btnup').text(state.val[0].has_pir);
+		$('#btndown').text(state.val[0].dip_config);
+		
   });
   // Boilerplate code: Fetch boolean and text values from config to the UI and add "changed" handlers
   // to each input element identified by class "value"
