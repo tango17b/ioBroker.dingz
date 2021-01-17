@@ -103,12 +103,14 @@ class Dingz extends utils.Adapter {
     fetchValues() {
 		
         this.log.silly("fetching values");
+		/*
         this.doFetch("temp").then(temp => {
             this.setStateAsync("temperature", temp.temperature, true);
         });
+		
         this.doFetch("light").then((pirState) => {
             this.pir.setPirState(pirState);
-        });
+        });*/
         this.doFetch("dimmer").then((res) => {
             this.dimmers.setDimmerStates(res, this.dip_config);
         });
@@ -123,6 +125,11 @@ class Dingz extends utils.Adapter {
 			this.log.silly(JSON.stringify(res.sensors));
 			this.log.silly('#Dimmers '+ res.dimmers.length);
 			this.log.silly('#blinds ' + res.blinds.length);
+			this.setStateAsync("temperature", res.sensors.room_temperature, true);
+			if (this.has_pir) {
+				this.setStateAsync("brightness.intensity", res.sensors.brightness, true);
+				this.d.setStateAsync("brightness.phase", res.sensors.light_state, true);				
+			}
 		});
     }
     /**
