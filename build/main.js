@@ -128,7 +128,7 @@ class Dingz extends utils.Adapter {
 			this.setStateAsync("temperature", res.sensors.room_temperature, true);
 			if (this.has_pir) {
 				this.setStateAsync("brightness.intensity", res.sensors.brightness, true);
-				this.d.setStateAsync("brightness.phase", res.sensors.light_state, true);				
+				this.setStateAsync("brightness.phase", res.sensors.light_state, true);				
 			}
 		});
     }
