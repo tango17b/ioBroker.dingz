@@ -118,6 +118,9 @@ class Dingz extends utils.Adapter {
 		// fetch via state api
 		this.doFetch("state").then((res) => {
 			this.log.silly(JSON.stringify(res));
+			this.log.silly(JSON.stringify(res.dimmers));
+			this.log.silly(JSON.stringify(res.blinds));
+			this.log.silly(JSON.stringify(res.sensors));
 		});
     }
     /**
