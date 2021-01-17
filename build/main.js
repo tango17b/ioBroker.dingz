@@ -121,6 +121,8 @@ class Dingz extends utils.Adapter {
 			this.log.silly(JSON.stringify(res.dimmers));
 			this.log.silly(JSON.stringify(res.blinds));
 			this.log.silly(JSON.stringify(res.sensors));
+			this.log.silly('#Dimmers '+ res.dimmers.length);
+			this.log.silly('#blinds ' + res.blinds.length);
 		});
     }
     /**
