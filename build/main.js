@@ -125,10 +125,22 @@ class Dingz extends utils.Adapter {
 			this.log.silly(JSON.stringify(res.sensors));
 			this.log.silly('#Dimmers '+ res.dimmers.length);
 			this.log.silly('#blinds ' + res.blinds.length);
+			// update sensor states
 			this.setStateAsync("temperature", res.sensors.room_temperature, true);
 			if (this.has_pir) {
 				this.setStateAsync("brightness.intensity", res.sensors.brightness, true);
 				this.setStateAsync("brightness.phase", res.sensors.light_state, true);				
+			}
+			// update dimmer states
+			for (var i = 0; i < res.dimmers.length; i++) {
+				this.log.silly("Dimmers loop");
+				this.log.silly(JSON.stringify(res.blinds.[i]));
+				
+			}
+			// update blind states
+			for (var i = 0; i < res.blinds.length; i++) {
+				this.log.silly("blinds loop, Blind absolute: " + res.blinds.[i].index.absolute);
+				this.log.silly(JSON.stringify(res.blinds.[i]));
 			}
 		});
     }
