@@ -135,14 +135,14 @@ class Dingz extends utils.Adapter {
 			for (var i = 0; i < res.dimmers.length; i++) {
 				this.log.silly("Dimmers loop");
 				var obj = res.dimmers[i];
-				this.log.silly(res.dimmers[i].toString());
+				this.log.silly(obj.toString());
 				
 			}
 			// update blind states
 			for (var i = 0; i < res.blinds.length; i++) {
 				var obj = res.blinds[i];
-				this.log.silly("blinds loop, Blind absolute: " + res.blinds[i].index.absolute);
-				this.log.silly(res.blinds[i].toString());
+				this.log.silly("blinds loop, Blind absolute: " + obj.index.absolute);
+				this.log.silly(obj.toString());
 			}
 		});
     }
