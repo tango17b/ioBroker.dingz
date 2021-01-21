@@ -144,7 +144,7 @@ class Dingz extends utils.Adapter {
 				this.log.silly("Dimmers loop absolute: " + n);
 				this.log.silly(JSON.stringify(dimmer));
 				
-				yield this.setStateAsync(`dimmers.${n}.on`, dimmer.on, true);
+				yield this.setStateAsync(`dimmers.${n.toString()}.on`, dimmer.on, true);
 				yield this.setStateAsync(`dimmers.${n}.value`, dimmer.value, true);
 				yield this.setStateAsync(`dimmers.${n}.ramp`, dimmer.ramp, true);
 				//yield this.d.setStateAsync(`dimmers.${n}.disabled`, s.disabled, true);
