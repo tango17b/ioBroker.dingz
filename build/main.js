@@ -137,6 +137,7 @@ class Dingz extends utils.Adapter {
 				this.setStateAsync("brightness.phase", res.sensors.light_state, true);				
 			}
 			// update dimmer states
+			/*
 			for (var i = 0; i < res.dimmers.length; i++) {
 				
 				let dimmer = res.dimmers[i];
@@ -150,7 +151,7 @@ class Dingz extends utils.Adapter {
 				//yield this.d.setStateAsync(`dimmers.${n}.disabled`, s.disabled, true);
 
 				
-			}
+			}*/
 			// update blind states
 			for (var i = 0; i < res.blinds.length; i++) {
 				let blind = res.blinds[i];
