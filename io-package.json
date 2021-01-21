@@ -178,7 +178,7 @@
     "trackbtn3": false,
     "trackbtn4": false,
     "trackpir": false,
-	"api": '/api/v1/'
+	"api": "/api/v1/"
   },
   "objects": [],
   "instanceObjects": [
