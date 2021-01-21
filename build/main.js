@@ -140,32 +140,32 @@ class Dingz extends utils.Adapter {
 			
 			for (var i = 0; i < res.dimmers.length; i++) {
 				
-				var dimmer = res.dimmers[i];
-				var n = dimmer.index.absolute;
+				let dimmer = res.dimmers[i];
+				let n = dimmer.index.absolute;
 				this.log.silly("Dimmers loop absolute: " + n);
 				this.log.silly(JSON.stringify(dimmer));
 				
-				yield this.setStateAsync(`dimmers.${n.toString()}.on`, dimmer.on, true);
-				yield this.setStateAsync(`dimmers.${n}.value`, dimmer.value, true);
-				yield this.setStateAsync(`dimmers.${n}.ramp`, dimmer.ramp, true);
+				this.setStateAsync(`dimmers.${n.toString()}.on`, dimmer.on, true);
+				this.setStateAsync(`dimmers.${n}.value`, dimmer.value, true);
+				this.setStateAsync(`dimmers.${n}.ramp`, dimmer.ramp, true);
 				//yield this.d.setStateAsync(`dimmers.${n}.disabled`, s.disabled, true);
 
 				
 			}
 			// update blind states
 			for (var i = 0; i < res.blinds.length; i++) {
-				var blind = res.blinds[i];
-				var n = blind.index.absolute;
+				let blind = res.blinds[i];
+				let n = blind.index.absolute;
 				this.log.silly("blinds loop, Blind absolute: " + n);
 				this.log.silly(JSON.stringify(blind));
 				
-				yield this.setStateAsync(`shades.${n}.blind`, blind.position, true);
-				yield this.setStateAsync(`shades.${n}.lamella`, blind.lamella, true);
+				this.setStateAsync(`shades.${n}.blind`, blind.position, true);
+				this.setStateAsync(`shades.${n}.lamella`, blind.lamella, true);
 				
 				if (this.getState(`shades.${n}.up`).val() || this.getState(`shades.${n}.down`).val() || this.getState(`shades.${n}.stop`).val() {
-					yield this.setStateAsync(`shades.${n}.up`, false, true);
-					yield this.setStateAsync(`shades.${n}.down`, false, true);
-					yield this.setStateAsync(`shades.${n}.stop`, false, true);						
+					this.setStateAsync(`shades.${n}.up`, false, true);
+					this.setStateAsync(`shades.${n}.down`, false, true);
+					this.setStateAsync(`shades.${n}.stop`, false, true);						
 					
 				}
 				//yield this.setStateAsync(`shades.${n}.disabled`, s.disabled, true);
