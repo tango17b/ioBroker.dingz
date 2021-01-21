@@ -81,6 +81,7 @@ class Dimmers {
                 yield this.setDimmerState(0, n["0"]);
                 yield this.setDimmerState(1, n["1"]);
             }
+			// generiert fehler wenn nur 2 dimmer (n2 und n3 existieren dann nicht
             if ((dip_config & 2) != 0) {
                 yield this.setDimmerState(2, n["2"]);
                 yield this.setDimmerState(3, n["3"]);

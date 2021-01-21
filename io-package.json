@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "dingz",
-    "version": "0.6.6",
+    "version": "0.6.7",
     "news": {
+		"0.6.7": {
+        "en": "fetch via state api",
+        "de": "fetch via state api"
+      },	
 		"0.6.6": {
         "en": "code cleanup",
         "de": "code cleanup"
@@ -173,7 +177,8 @@
     "trackbtn2": false,
     "trackbtn3": false,
     "trackbtn4": false,
-    "trackpir": false
+    "trackpir": false,
+	"api": '/api/v1/'
   },
   "objects": [],
   "instanceObjects": [

@@ -87,13 +87,17 @@ class Dingz extends utils.Adapter {
 					this.setState("info.deviceInfo.has_pir", di[mac].has_pir);
                     this.log.info("Dingz Info: " + JSON.stringify(di[mac]));
                     this.setState("info.connection", true, true);
+                    
+					this.dip_config = di[mac].dip_config;
+					this.has_pir = di[mac].has_pir;					
                     // we're connected. So set up State Objects
-                    yield this.createObjects(di[mac].dip_config);
-                    this.dip_config = di[mac].dip_config;
+                    yield this.createObjects(this.dip_config, this.has_pir);
                     this.subscribeStates("*");
                     // initial read
                     this.fetchValues();
-                    this.pir.trackMotion();
+					if (this.has_pir) {
+						this.pir.trackMotion();
+					}
                     // Read temperature, PIR and dimmers regularly and set states accordingly
                     this.timer = setInterval(this.fetchValues.bind(this), this.interval * 1000);
                 }
@@ -101,30 +105,31 @@ class Dingz extends utils.Adapter {
         });
     }
     fetchValues() {
-		
-        this.log.silly("fetching values");
 		/*
+        this.log.silly("fetching values");
+		
         this.doFetch("temp").then(temp => {
             this.setStateAsync("temperature", temp.temperature, true);
         });
 		
         this.doFetch("light").then((pirState) => {
             this.pir.setPirState(pirState);
-        });*/
+        });
         this.doFetch("dimmer").then((res) => {
             this.dimmers.setDimmerStates(res, this.dip_config);
         });
         this.doFetch("shade").then((res) => {
             this.shades.setShadeStates(res, this.dip_config);
-        });
+        });*/
+		
 		// fetch via state api
 		this.doFetch("state").then((res) => {
 			this.log.silly(JSON.stringify(res));
-			this.log.silly(JSON.stringify(res.dimmers));
-			this.log.silly(JSON.stringify(res.blinds));
-			this.log.silly(JSON.stringify(res.sensors));
-			this.log.silly('#Dimmers '+ res.dimmers.length);
-			this.log.silly('#blinds ' + res.blinds.length);
+			//this.log.silly(JSON.stringify(res.dimmers));
+			//this.log.silly(JSON.stringify(res.blinds));
+			//this.log.silly(JSON.stringify(res.sensors));
+			//this.log.silly('#Dimmers '+ res.dimmers.length);
+			//this.log.silly('#blinds ' + res.blinds.length);
 			// update sensor states
 			this.setStateAsync("temperature", res.sensors.room_temperature, true);
 			if (this.has_pir) {
@@ -133,16 +138,42 @@ class Dingz extends utils.Adapter {
 			}
 			// update dimmer states
 			for (var i = 0; i < res.dimmers.length; i++) {
-				this.log.silly("Dimmers loop");
-				var obj = res.dimmers[i];
-				this.log.silly(JSON.stringify(obj));
+				
+				let dimmer = res.dimmers[i];
+				let n = dimmer.index.absolute;
+				this.log.silly("Dimmers loop absolute: " + n);
+				this.log.silly(JSON.stringify(dimmer));
+				
+				yield this.setStateAsync(`dimmers.${n}.on`, dimmer.on, true);
+				yield this.setStateAsync(`dimmers.${n}.value`, dimmer.value, true);
+				yield this.setStateAsync(`dimmers.${n}.ramp`, dimmer.ramp, true);
+				//yield this.d.setStateAsync(`dimmers.${n}.disabled`, s.disabled, true);
+
 				
 			}
 			// update blind states
 			for (var i = 0; i < res.blinds.length; i++) {
-				var obj = res.blinds[i];
-				this.log.silly("blinds loop, Blind absolute: " + obj.index.absolute);
-				this.log.silly(JSON.stringify(obj));
+				let blind = res.blinds[i];
+				let n = blind.index.absolute;
+				this.log.silly("blinds loop, Blind absolute: " + n);
+				this.log.silly(JSON.stringify(blind));
+				
+				yield this.setStateAsync(`shades.${n}.blind`, blind.position, true);
+				yield this.setStateAsync(`shades.${n}.lamella`, blind.lamella, true);
+				
+				if (this.getState(`shades.${n}.up`).val() || this.getState(`shades.${n}.down`).val() || this.getState(`shades.${n}.stop`).val() {
+					yield this.setStateAsync(`shades.${n}.up`, false, true);
+					yield this.setStateAsync(`shades.${n}.down`, false, true);
+					yield this.setStateAsync(`shades.${n}.stop`, false, true);						
+					
+				}
+				//yield this.setStateAsync(`shades.${n}.disabled`, s.disabled, true);
+				// set  for up/down/stop if blinds.current = target state
+				/*
+				yield this.d.setStateAsync(`shades.${n}.up`, false, true);
+				yield this.d.setStateAsync(`shades.${n}.down`, false, true);
+				yield this.d.setStateAsync(`shades.${n}.stop`, false, true);		
+				*/				
 			}
 		});
     }
@@ -241,7 +272,15 @@ class Dingz extends utils.Adapter {
      *
      * }
      */
-    createObjects(dip_config) {
+    createObjects(dip_config, has_pir) {
+		/**
+		* dip_cofig:
+		*	0: shades/shades
+		*   1: 2 dimmers / shade
+		*   2: shade / 2 dimmers 
+		*   3: 4 dimmers
+		*
+		*/
         return __awaiter(this, void 0, void 0, function* () {
             yield this.setObjectAsync("temperature", {
                 type: "state",
