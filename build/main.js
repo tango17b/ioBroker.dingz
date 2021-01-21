@@ -162,7 +162,7 @@ class Dingz extends utils.Adapter {
 				this.setStateAsync(`shades.${n}.blind`, blind.position, true);
 				this.setStateAsync(`shades.${n}.lamella`, blind.lamella, true);
 				
-				if (this.getState(`shades.${n}.up`).val() || this.getState(`shades.${n}.down`).val() || this.getState(`shades.${n}.stop`).val()) {
+				if (this.getState(`shades.${n}.up`).val || this.getState(`shades.${n}.down`).val || this.getState(`shades.${n}.stop`).val) {
 					this.setStateAsync(`shades.${n}.up`, false, true);
 					this.setStateAsync(`shades.${n}.down`, false, true);
 					this.setStateAsync(`shades.${n}.stop`, false, true);						
