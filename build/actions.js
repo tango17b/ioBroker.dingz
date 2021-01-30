@@ -122,7 +122,7 @@ class Actions {
 				case 'single':
 					btnaction = 'single-press';
 				break;
-				case 'dobule':
+				case 'double':
 					btnaction = 'double-press';
 				break;
 				case 'long':
@@ -155,6 +155,9 @@ class Actions {
                 });
                 if (response.status == 200) {
                     this.d.log.info("ok");
+					// reset state
+					this.d.setState("actions." +parts[1]+"."+parts[2],false, true);
+					this.d.setState("actions." +parts[1]+".generic",false, true);
                 }
                 else {
                     this.d.log.error("Error while posting " + url + ": " + response.status + ", " + response.statusText);
